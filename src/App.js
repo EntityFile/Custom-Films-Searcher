@@ -91,7 +91,7 @@ class App extends Component {
         console.log("Data received successfuly")
         const slicedSearchResults = searchResults.cast
 
-        this.castRes = slicedSearchResults.slice(0, 6)        
+        this.castRes = slicedSearchResults.slice(0, 10)        
       },
       error: (xhr, status, err) => {
         console.log("Failed to receive data")
@@ -207,22 +207,28 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
-        <table className="titleBar">
-          <tbody>
-            <td>
-              <img className="icon" width="50" alt="fm-icon" src="icon-3.svg"/>
-            </td>
-            <td width="10"/>
-            <td>
+
+        <div className="titleBar">
+          <table>
+            <tbody>
+              <td>
+                <img className="icon" width="50" alt="fm-icon" src="icon-3.svg"/>
+              </td>
+              <td width="10"/>
+              <td>
+                <p className="titleText">Search Your Movie</p>
+              </td>
+              <td width="10"/>
+            </tbody>
+          </table>
+          <div className="outerSearchBar">
+            <div className="searchTableBar">
               <input className="searchBar" onChange={this.searchRenderer.bind(this)} placeholder=""/>
-            </td>
-            <td>
               <button className="searchButton" onClick={this.doTheSearch}><div class="w3-text-white"><i class="fa fa-search"></i></div></button>
-            </td>
-            <td width="10"/>
-          </tbody>
-        </table>
+            </div>
+          </div>
+        </div>
+  
         <div class="dbgOuter">
           <p className="radioSettings">Settings:</p>
           <div class="dbgContRows">
