@@ -1,3 +1,5 @@
+This site helps to make custom search of films.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
