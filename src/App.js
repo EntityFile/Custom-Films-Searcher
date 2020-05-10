@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
-import FilmRow from './FilmRow.js';
-import CastRow from './CastRow.js';
+import FilmRow from './FilmRow/FilmRow.js';
+import CastRow from './CastRow/CastRow.js';
 import $ from 'jquery';
+import Header from './Header/Header.js'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import SearchSettings from "./SearchSettings.js";
 
 class App extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
       initial: 'state',
-      some: ''
+      some: '',
+      searchString: '%20',
     }
 
     this.searchSettings = {
@@ -17,14 +22,16 @@ class App extends Component {
       showGenres: true,
       showDate: true,
       showBudget: true,
-      showBox: true
+      showBox: true,
+      maxActors: 10
     }
 
     this.searchString = ''
 
     this.getinfoAboutFilm()
 
-    this.doTheSearch = this.doTheSearch.bind(this)  
+    this.doTheSearch = this.doTheSearch.bind(this)
+    this.searchRenderer = this.searchRenderer.bind(this)
     this.changeRadioActors = this.changeRadioActors.bind(this)
     this.changeRadioGenres = this.changeRadioGenres.bind(this)
     this.changeRadioDate = this.changeRadioDate.bind(this)
@@ -36,45 +43,46 @@ class App extends Component {
     if (this.searchString === undefined || this.searchString === '') {
       this.searchString = '%20';
     }
-    const urlApi = 'https://api.themoviedb.org/3/search/movie?api_key=2fc26b04aa90bdfcc6f7f1d86fe7b1c0&query=' + this.searchString;
+    const urlApi = 'https://api.themoviedb.org/3/search/movie?api_key=2fc26b04aa90bdfcc6f7f1d86fe7b1c0&query=' + this.state.searchString;
     $.ajax({
       url: urlApi,
       success: (searchResults) => {
         console.log("Data received successfuly")
         const results = searchResults.results
 
+        var filmrows = []
+
         if (results.length === 0) {
-          alert('No results')
+          filmrows.push(<p>No results found</p>)
+        } else {
+          var i = 0
+          results.forEach((film) => {
+            film.arrayId = i
+
+            console.log(this.searchSettings)
+            film.settings = this.searchSettings
+
+            this.getinfoAboutFilm(film.id)
+
+            film.genres = this.filmData.genres
+            film.releaseDate = this.filmData.release_date
+            film.budget = this.filmData.budget
+            film.boxOffice = this.filmData.revenue
+
+            const filmInfo = <FilmRow key={film.id} film={film} />
+            i++;
+            filmrows.push(filmInfo)
+
+            if (this.searchSettings.showCast === true) {
+              this.findCredits(film.id, film.title)
+              const castInfo = <CastRow key={this.castRes.cast_id} cast={this.castRes} />
+
+              filmrows.push(castInfo)
+            }
+          })
         }
 
-        var filmrows = []
-        var i = 0
-        results.forEach((film) => {
-          film.arrayId = i
-
-          console.log(this.searchSettings)
-          film.settings = this.searchSettings
-
-          this.getinfoAboutFilm(film.id)
-          
-          film.genres = this.filmData.genres
-          film.releaseDate = this.filmData.release_date
-          film.budget = this.filmData.budget
-          film.boxOffice = this.filmData.revenue
-
-          const filmInfo = <FilmRow key={film.id} film={film}/>
-          i++;
-          filmrows.push(filmInfo)
-
-          if (this.searchSettings.showCast === true) {
-            this.findCredits(film.id, film.title)
-            const castInfo = <CastRow key={this.castRes.cast_id} cast={this.castRes}/>
-            
-            filmrows.push(castInfo)
-          }
-        })
-
-        this.setState({rows: filmrows})
+        this.setState({ rows: filmrows })
       },
       error: (xhr, status, err) => {
         console.log("Failed to receive data")
@@ -84,24 +92,24 @@ class App extends Component {
 
   findCredits(filmId, filmTitle) {
     const urlApi = 'https://api.themoviedb.org/3/movie/' + filmId + '/credits?api_key=2fc26b04aa90bdfcc6f7f1d86fe7b1c0'
-    $.ajaxSetup({"async": false})
+    $.ajaxSetup({ "async": false })
     $.ajax({
       url: urlApi,
       success: (searchResults) => {
         console.log("Data received successfuly")
         const slicedSearchResults = searchResults.cast
 
-        this.castRes = slicedSearchResults.slice(0, 10)        
+        this.castRes = slicedSearchResults.slice(0, 10)
       },
       error: (xhr, status, err) => {
         console.log("Failed to receive data")
       }
     })
   }
-  
+
   searchRenderer(event) {
     const searchStr = event.target.value;
-    this.searchString = searchStr;
+    this.setState({ searchString: searchStr });
   }
 
   searchPeople() {
@@ -193,7 +201,7 @@ class App extends Component {
 
   getinfoAboutFilm(filmId) {
     const urlApi = 'https://api.themoviedb.org/3/movie/' + filmId + '?api_key=2fc26b04aa90bdfcc6f7f1d86fe7b1c0&language=en-US';
-    $.ajaxSetup({"async": false})
+    $.ajaxSetup({ "async": false })
     $.ajax({
       url: urlApi,
       success: (searchResults) => {
@@ -207,66 +215,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <BrowserRouter>
+          <Header searchRenderer={this.searchRenderer} doTheSearch={this.doTheSearch} />
+          <Switch>
+            <Route path='/search' component={() =>
+              <div>
+                <SearchSettings searchSettings={this.searchSettings} changeRadioGenres={this.changeRadioGenres} changeRadioDate={this.changeRadioDate} changeRadioBudget={this.changeRadioBudget} changeRadioBox={this.changeRadioBox} changeRadioActors={this.changeRadioActors} />
 
-        <div className="titleBar">
-          <table>
-            <tbody>
-              <td>
-                <img className="icon" width="50" alt="fm-icon" src="icon-3.svg"/>
-              </td>
-              <td width="10"/>
-              <td>
-                <p className="titleText">Search Your Movie</p>
-              </td>
-              <td width="10"/>
-            </tbody>
-          </table>
-          <div className="outerSearchBar">
-            <div className="searchTableBar">
-              <input className="searchBar" onChange={this.searchRenderer.bind(this)} placeholder=""/>
-              <button className="searchButton" onClick={this.doTheSearch}><div class="w3-text-white"><i class="fa fa-search"></i></div></button>
-            </div>
-          </div>
-        </div>
-  
-        <div class="dbgOuter">
-          <p className="radioSettings">Settings:</p>
-          <div class="dbgContRows">
-            <div class="dbgContColumn">
-              <div class="checkBoxes">
-                <input onChange={this.changeRadioGenres} type="checkbox" id="dbgTrace" class="dbgCheck1" />
-                <label for="dbgTrace">Genres</label>
-              </div>
-              <div class="checkBoxes">
-                <input onChange={this.changeRadioDate} type="checkbox" id="dbgDebug" class="dbgCheck1" />
-                <label for="dbgDebug">Realise date</label>
-              </div>
-            </div>
-            <div class="dbgContColumn">
-              <div class="checkBoxes">
-                <input onChange={this.changeRadioBudget} type="checkbox" id="dbgWarn"  class="dbgCheck1" />
-                <label for="dbgWarn">Budget</label>
-              </div>
-              <div class="checkBoxes">
-                <input onChange={this.changeRadioBox} type="checkbox" id="dbgErr"  class="dbgCheck1"/>
-                <label for="dbgErr">Box office</label>
-              </div>
-            </div>      
-          </div>
+                <div className="searchData">
+                  {this.state.rows}
+                </div>
+              </div>}>
+            </Route>
+            <Route path='/' component={() =>
+              <p>Main page</p>}>
 
-          <div class="line">
-
-          </div>
-
-          <div class="dbgCont">
-            <input onChange={this.changeRadioActors} type="checkbox" id="dbgInfo" class="dbgCheck2" />
-            <label for="dbgInfo">Show Actors</label>
-          </div>
-        </div>
-        <div className="searchData">
-          {this.state.rows}
-        </div>
-        
+            </Route>
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }

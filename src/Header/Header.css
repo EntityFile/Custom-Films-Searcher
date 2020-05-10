@@ -1,0 +1,92 @@
+.icon {
+  width: 60px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.titleBar {
+  background: linear-gradient(90deg, rgba(25,11,42,1) 0%, rgba(50,14,119,1) 100%);
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+  font-size: 24px;
+  padding-left: 16px
+}
+
+
+.searchBar {
+  font-size: 18px;
+  font-family: 'Quicksand', sans-serif;
+  color: rgb(80, 80, 80);
+  display: block;
+  width: 100%;
+  height: 40%;
+  border: none;
+  text-indent: 15px;
+  border-radius: 45px 0px 0px 45px;
+}
+
+.searchTableBar{
+  width: 300px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.outerSearchBar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.titleText {
+  margin: 0;
+  width: 220px;
+}
+
+input.searchBar {
+  padding-bottom: 2px;
+}
+
+.searchBar:focus {
+  outline-width: 0;
+}
+
+.searchButton {
+  font-family: 'Quicksand', sans-serif;
+  display: block;
+  height: 100%;
+  float: right;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  margin-right: 20px;
+  border-radius: 0px 45px 45px 0px;
+}
+
+button.searchButton {
+  padding-bottom: 2px;
+}
+
+.searchButton:focus {
+  outline-width: 0;
+}
+
+.link1 {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.link {
+  height: 40%;
+  width: 55px;
+  margin-right: 25px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
