@@ -59,7 +59,6 @@ class App extends Component {
           results.forEach((film) => {
             film.arrayId = i
 
-            console.log(this.searchSettings)
             film.settings = this.searchSettings
 
             this.getinfoAboutFilm(film.id)
@@ -79,6 +78,8 @@ class App extends Component {
 
               filmrows.push(castInfo)
             }
+
+
           })
         }
 
@@ -106,6 +107,8 @@ class App extends Component {
       }
     })
   }
+
+  
 
   searchRenderer(event) {
     const searchStr = event.target.value;

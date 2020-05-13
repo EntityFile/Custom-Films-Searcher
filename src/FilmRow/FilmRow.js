@@ -2,6 +2,13 @@ import React from 'react';
 import './FilmRow.css';
 
 class FilmRow extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      wins: '-',
+      nominees: '-'
+    }
+  }
   addDefaultSrc(ev) {
     ev.target.src = 'notloadposter.png'
   }
@@ -44,6 +51,37 @@ class FilmRow extends React.Component {
     return [genres, date, budget, rev]
   }
 
+  componentDidMount() {
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+    const urlApi = 'http://api.wolframalpha.com/v2/query?input=' + this.props.film.title + '%20' + this.props.film.releaseDate.slice(0,4) + '%20academy%20award%20nominees&appid=J4Y65P-E5KWT68JLR&includepodid=Result&format=plaintext&output=json'
+    fetch(proxyUrl + urlApi)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        var nominees = 0
+        var wins = 0
+        console.log(result)
+        if (result.queryresult.pods) {
+          const res = result.queryresult.pods[0].subpods[0].plaintext.split(' ')
+          for (const word of res) {
+            if (word === '(nominee)') {
+              nominees += 1
+            } else if (word === '(winner)') {
+              wins += 1
+            }
+          }
+          this.setState({
+            wins: wins,
+            nominees: nominees
+          })
+        } else {
+          console.log(result.queryresult)
+        }
+        
+      }
+    );
+  }
+
   render() {
     var data = this.refactorData()
     let [genres, date, budget, rev] = data
@@ -55,7 +93,7 @@ class FilmRow extends React.Component {
     }
 
     return <div className={divId} >
-      <img onError={this.addDefaultSrc} className="posterImg" width="150" alt="film-poster" src={'https://image.tmdb.org/t/p/w600_and_h900_bestv2/' + this.props.film.poster_path} />
+      <img onError={this.addDefaultSrc} className="posterImg" alt="film-poster" src={'https://image.tmdb.org/t/p/w600_and_h900_bestv2/' + this.props.film.poster_path} />
       <div className="mainInfo">
         <p className="filmTitle">{this.props.film.title}</p>
         {
@@ -91,9 +129,11 @@ class FilmRow extends React.Component {
               </div>
               <div className="academyWins">
                 <p className="academyResults">Wins:</p>
+                  <p className="academyResWin">{this.state.wins}</p>
               </div>
               <div className="academyNom">
                 <p className="academyResults">Nominations:</p>
+                  <p className="academyResNominee">{this.state.nominees}</p>
               </div>
             </div>
           </div>
@@ -105,7 +145,7 @@ class FilmRow extends React.Component {
 
             </div>
           </div>
-          <div className="additionalBox1">
+          <div className="additionalBox3">
             <div className="additionalTitle">
               <p className="additionalTitleP">Production</p>
             </div>

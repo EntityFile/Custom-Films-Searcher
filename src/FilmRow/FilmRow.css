@@ -3,7 +3,6 @@
 }
 
 .additionalInfo {
-  width: 80%;
   display: flex;
   justify-content: flex-end;
 }
@@ -11,25 +10,64 @@
 .additionalBoxes {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   width: 100%;
   height: 100%;
-  margin-right: 15px;
+  margin-right: 14px;
 }
 
 .additionalBox1 {
   background-color: #CACCCE;
-  width: 33.3%;
+  width: 160px;
+  height: 240px;
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px 0 0 8px;
+}
+
+@media (max-width: 1500px) {
+  .additionalBox1 {
+    display: none;
+  }
+
+  .additionalBox2 {
+    border-radius: 8px 0 0 8px;
+  }
+}
+
+.additionalBox2 {
+  background-color: #D2D4D6;
+  width: 160px;
+  height: 240px;
   margin: 15px 0;
   display: flex;
   flex-direction: column;
 }
 
-.additionalBox2 {
-  background-color: #D2D4D6;
-  width: 33.3%;
+@media (max-width: 1230px) {
+  .additionalBox2 {
+    display: none;
+  }
+  
+  .additionalBox3 {
+    border-radius: 8px 8px 8px 8px;
+  }
+}
+
+.additionalBox3 {
+  background-color: #CACCCE;
+  width: 160px;
+  height: 240px;
   margin: 15px 0;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 1230px) {
+  .additionalBox3 {
+    border-radius: 0 8px 8px 0;
+  }
 }
 
 .searchRow1 {
@@ -47,6 +85,7 @@
 .posterImg {
   margin: 15px 20px;
   border-radius: 8px;
+  height: 240px;  
 }
 
 .filmTitle {
@@ -65,14 +104,75 @@
   text-align: left;
 }
 
+@media (max-width: 800px) {
+  .filmInfo {
+    font-size: 8px;
+    line-height: 1.2;
+  }
+
+  .filmTitle {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 7px
+  }
+
+  .additionalBoxes {
+    margin-right: 7px;
+  }
+
+  .additionalBox3 {
+    width: 80px;
+    height: 120px;
+    border-radius: 4px 4px 4px 4px;
+    margin: 7px 0;
+  }
+
+  .additionalTitleP {
+    height: 13.5px;
+    font-size: 10px;
+  }
+
+  .additionalTitle {
+    height: 13.5px;
+    margin: 3px 3.5px;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .posterImg {
+    height: 120px;
+    margin: 7px 9px;
+  }
+
+  .searchRow1 {
+    width: 100%;
+  }
+
+  .searchRow2 {
+    width: 100%;
+  }
+}
+
+@media (min-width: 800px) {
+  .additionalInfo {
+    width: 80%;
+  }
+
+  .additionalTitle {
+    margin: 6px 7px;
+    height: 27px;
+    border-radius: 45px 45px 45px 45px
+  }
+
+  .additionalTitleP {
+    font-size: 14px;
+  }
+}  
+
 .additionalTitle {
-  height: 27px;
   background-color: white;
-  margin: 6px 7px;
   display: flex;
   align-content: center;
-  justify-content: center;
-  border-radius: 45px 45px 45px 45px;
+  justify-content: center;;
 }
 
 .additionalTitleP {
@@ -80,7 +180,6 @@
   display: flex;
   align-items: center;
   margin: 0;
-  font-size: 14px;
   vertical-align: middle;
   color: rgb(119, 119, 119);
   padding-bottom: 2px;
@@ -117,4 +216,31 @@
   height: 50%;
   display: flex;
   background-color: #C69320;
+  border-radius: 0 0 0 8px;
+}
+
+.academyResWin {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  color: #966C17;
+  margin: 0;
+  width: 60px;
+  margin-left: 55px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.academyResNominee {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 27px;
+  color: rgb(235, 201, 8);
+  margin: 0;
+  margin-left: 9.5px;
+  width: 40px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
