@@ -1,0 +1,155 @@
+.icon {
+  width: 60px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 800px) {
+  .icon {
+    width: 33px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  .titleBar {
+    font-size: 12px;
+    padding-left: 7px;
+  }
+  
+  .titleText {
+    width: 110px;
+    text-align: left;
+  }
+
+  .searchTableBar {
+    width: 160px;
+  }
+  
+  .searchBar {
+    height: 65%;
+    text-indent: 10px;
+    font-size: 12px;
+  }
+
+  .link {
+    height: 65%;
+    width: 31px;
+    margin-right: 15px;
+  }
+
+  .searchButton {
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  button.searchButton {
+    padding-bottom: 0px;
+  }
+}
+
+@media (min-width: 800px) {
+  .titleBar {
+    font-size: 24px;
+    padding-left: 7px;
+  }
+
+  .titleText {
+    width: 220px;
+  }
+
+  .searchTableBar {
+    width: 320px;
+  }
+
+  .searchBar {
+    height: 40%;
+    text-indent: 15px;
+    font-size: 18px;
+  }
+
+  .link {
+    height: 40%;
+    width: 55px;
+    margin-right: 25px;
+  }
+
+  .searchButton {
+    padding: 0 20px;
+    font-size: 17px;
+  }
+
+  button.searchButton {
+    padding-bottom: 2px;
+  }
+}
+
+.titleBar {
+  background: linear-gradient(90deg, rgba(25,11,42,1) 0%, rgba(50,14,119,1) 100%);
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+}
+
+
+.searchBar {
+  font-family: 'Quicksand', sans-serif;
+  color: rgb(80, 80, 80);
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 45px 0px 0px 45px;
+}
+
+.searchTableBar{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.outerSearchBar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.titleText {
+  margin: 0;
+}
+
+input.searchBar {
+  padding-bottom: 2px;
+}
+
+.searchBar:focus {
+  outline-width: 0;
+}
+
+.searchButton {
+  font-family: 'Quicksand', sans-serif;
+  display: block;
+  height: 100%;
+  float: right;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+  border-radius: 0px 45px 45px 0px;
+}
+
+.searchButton:focus {
+  outline-width: 0;
+}
+
+.link1 {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}

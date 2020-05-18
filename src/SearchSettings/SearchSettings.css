@@ -1,0 +1,207 @@
+.dbgOuter {
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.radioSettings {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.dbgCheck {
+  position: absolute; 
+  opacity: 0;
+}
+.dbgCheck + label {
+  font-family: 'Quicksand', sans-serif;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  padding-left: 30px;
+}
+
+.dbgCheck + label:before {
+  content: '';
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 20px;
+  height: 20px;
+  background: white;
+}
+
+.dbgCheck:hover + label:before {
+  background: lightgray;
+}
+
+.dbgCheck:checked:hover + label:before {
+  background: rgb(177, 177, 177);
+}
+
+.dbgCheck:checked + label:before {
+  background: gray;
+}
+  
+.checkBoxes {
+  display: flex;
+  flex-direction: row;
+}
+
+.line {
+  border-left: 1px solid rgba(17,3,38,1);
+  margin-left: 25px;
+  color: black;
+}
+
+.dbgContColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.dbgContRows {
+  display: flex;
+  flex-direction: row;
+}
+
+.maxActorsLabel {
+  font-family: 'Quicksand', sans-serif;;
+}
+
+.maxActorsBar {
+  font-size: 18px;
+  margin-left: 10px;
+  height: 25px;
+  font-family: 'Quicksand', sans-serif;
+  color: rgb(80, 80, 80);
+  border: none;
+  text-align: center;
+  width: 135px;
+}
+
+.maxActors {
+  display: flex;
+  align-items: center;
+}
+
+.dbgCast {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.maxActorsLabel {
+  margin-left: 30px
+}
+
+.showActors {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 800px) {
+  .dbgCheck + label {
+    padding-left: 10px;
+    font-size: 11px;
+  }
+
+  .dbgCheck + label:before {
+    width: 15px;
+    height: 15px;
+    margin-right: 3px;
+  }
+
+  .line {
+    margin-left: 12px;
+  }
+
+  .maxActorsLabel {
+    margin-left: 10px;
+    font-size: 11px;
+  }
+
+  .maxActorsBar {
+    font-size: 11px;
+    height: 17px;
+    width: 60px;
+    margin-left: 3px;
+  }
+
+  .radioSettings {
+    display: none;
+  }
+
+  .checkBoxes {
+    margin-bottom: 2px;
+  }
+
+  .showActors {
+    padding-bottom: 2px;
+  }
+
+  .dbgOuter {
+    padding: 7px 0;
+  }
+}
+
+/* Dropdown Button */
+.dropbtn {
+  text-align: center;
+  vertical-align: middle;
+  font-family: 'Quicksand', sans-serif;
+  background-color: white;
+  padding: 0;
+  width: 100%;
+  color: black;
+  font-size: 15px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdownMenu {
+  display: flex;
+  margin-bottom: 3px;
+  width: 120px;
+  height: 20px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdownContent {
+  display: none;
+  position: absolute;
+  width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdownContent button {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  color: black;
+  padding: 7px 3px;
+  border: none;  
+  width: 100%;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdownContent button:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdownMenu:hover .dropdownContent {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdownMenu:hover .dropbtn {
+  background-color: lightgray;
+}
+
+.space {
+  width: 30px;
+}
+
+.boxesSettings {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+}
