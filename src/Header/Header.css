@@ -45,6 +45,16 @@
   button.searchButton {
     padding-bottom: 0px;
   }
+
+  .link2 {
+    height: 28px;
+    width: 28px;
+    margin-right: 10px;
+  }
+
+  .settingsIcon {
+    width: 28px;
+  }
 }
 
 @media (min-width: 800px) {
@@ -58,7 +68,7 @@
   }
 
   .searchTableBar {
-    width: 320px;
+    width: 360px;
   }
 
   .searchBar {
@@ -70,7 +80,7 @@
   .link {
     height: 40%;
     width: 55px;
-    margin-right: 25px;
+    margin-right: 10px;
   }
 
   .searchButton {
@@ -80,6 +90,16 @@
 
   button.searchButton {
     padding-bottom: 2px;
+  }
+
+  .link2 {
+    margin-right: 25px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .settingsIcon {
+    width: 30px;
   }
 }
 
@@ -133,8 +153,12 @@ input.searchBar {
   background: #ddd;
   border: none;
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 10px;
   border-radius: 0px 45px 45px 0px;
+}
+
+.searchButton:hover {
+  background-color: rgb(189, 189, 189);
 }
 
 .searchButton:focus {
@@ -152,4 +176,15 @@ input.searchBar {
   display: flex;
   align-items: center;
   text-decoration: none;
+}
+
+.link2 {
+
+  display: flex;
+  background-color: #ddd;
+  border-radius: 45px;
+}
+
+.link2:hover {
+  background-color: rgb(189, 189, 189);
 }

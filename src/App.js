@@ -4,7 +4,7 @@ import FilmRow from './FilmRow/FilmRow.js';
 import CastRow from './CastRow/CastRow.js';
 import $ from 'jquery';
 import Header from './Header/Header.js'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import SearchSettings from "./SearchSettings/SearchSettings.js";
 
 class App extends Component {
@@ -15,16 +15,22 @@ class App extends Component {
       initial: 'state',
       some: '',
       searchString: '%20',
+      searchRoute: '/search',
+      showSettings: true
     }
 
     this.searchSettings = {
       showCast: false,
       showGenres: true,
+      showDuration: true,
+      showStatus: false,
       showDate: true,
-      showBudget: true,
+      showBudget: false,
       showBox: true,
       maxActors: 14
     }
+
+    this.currentMaxActors = 14
 
     this.boxesSettings = {
       Box1: "Academy Awards",
@@ -45,6 +51,36 @@ class App extends Component {
     this.changeRadioDate = this.changeRadioDate.bind(this)
     this.changeRadioBudget = this.changeRadioBudget.bind(this)
     this.changeRadioBox = this.changeRadioBox.bind(this)
+    this.changeRadioDuration = this.changeRadioDuration.bind(this)
+    this.changeRadioStatus = this.changeRadioStatus.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.handleCastKeyPress = this.handleCastKeyPress.bind(this)
+    this.setBoxesSettings = this.setBoxesSettings.bind(this)
+    this.changeShowSettings = this.changeShowSettings.bind(this)
+    this.maxActorsRenderer = this.maxActorsRenderer.bind(this)
+    this.updateMaxActors = this.updateMaxActors.bind(this)
+  }
+
+  changeShowSettings() {
+    let location = window.location.pathname
+    if (location !== '/search') {
+      this.setState({showSettings: true})
+    } else {
+      this.setState({showSettings: !this.state.showSettings})
+    }
+  }
+
+  setBoxesSettings(box, setting) {
+    this.boxesSettings[box] = setting
+
+    this.refillRows()
+  }
+
+  handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.doTheSearch();
+      return (<Redirect to={this.state.searchRoute} />)
+    }
   }
 
   refillRows() {
@@ -66,14 +102,21 @@ class App extends Component {
         film.releaseDate = this.filmData.release_date
         film.budget = this.filmData.budget
         film.boxOffice = this.filmData.revenue
+        film.filmStatus = this.filmData.status
+        film.duration = this.filmData.runtime
+        film.production = this.filmData.production_companies
 
-        const filmInfo = <FilmRow key={film.id} film={film} boxesSettings={this.boxesSettings}/>
+        if (this.searchSettings.showCast === true || Object.values(this.boxesSettings).includes("Director") || Object.values(this.boxesSettings).includes("Writer") || Object.values(this.boxesSettings).includes("Composer")) {
+          this.findCredits(film.id, film.title)
+          
+        }
+
+        const filmInfo = <FilmRow key={film.id} crew={this.crewRes} film={film} boxesSettings={this.boxesSettings} />
         filmrows.push(filmInfo)
 
         if (this.searchSettings.showCast === true) {
-          this.findCredits(film.id, film.title)
-          const castInfo = <CastRow key={this.castRes.cast_id} cast={this.castRes} maxActors={this.searchSettings.maxActors}/>
-
+          const castInfo = <CastRow key={this.castRes.cast_id} cast={this.castRes} maxActors={this.searchSettings.maxActors} />
+          
           filmrows.push(castInfo)
         }
 
@@ -105,7 +148,7 @@ class App extends Component {
     })
   }
 
-  findCredits(filmId, filmTitle) {
+  findCredits(filmId) {
     const urlApi = 'https://api.themoviedb.org/3/movie/' + filmId + '/credits?api_key=2fc26b04aa90bdfcc6f7f1d86fe7b1c0'
     $.ajaxSetup({ "async": false })
     $.ajax({
@@ -114,6 +157,7 @@ class App extends Component {
         console.log("Data received successfuly")
 
         this.castRes = searchResults.cast
+        this.crewRes = searchResults.crew
       },
       error: (xhr, status, err) => {
         console.log("Failed to receive data")
@@ -121,12 +165,25 @@ class App extends Component {
     })
   }
 
-  updateMaxActors(event) {
-    const amount = event.target.value
-    console.log(amount)
-    this.settings.maxActors = amount
 
-    this.refillRows()
+  updateMaxActors() {
+    if (this.currentMaxActors >= 0 && this.currentMaxActors <= 140) {
+      this.searchSettings.maxActors = this.currentMaxActors
+      this.refillRows()
+    }
+  }
+
+  handleCastKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.updateMaxActors()
+
+      this.refillRows()
+    }
+  }
+
+  maxActorsRenderer(event) {
+    const amount = event.target.value
+    this.currentMaxActors = amount
   }
 
   searchRenderer(event) {
@@ -140,8 +197,7 @@ class App extends Component {
       url: urlApi,
       success: (searchResults) => {
         console.log("Data received successfuly")
-        const results = searchResults
-        console.log(results);
+       // const results = searchResults
       },
       error: (xhr, status, err) => {
         console.log("Failed to receive data")
@@ -155,8 +211,7 @@ class App extends Component {
       url: urlApi,
       success: (searchResults) => {
         console.log("Data received successfuly")
-        const results = searchResults
-        console.log(results);
+        //const results = searchResults
       },
       error: (xhr, status, err) => {
         console.log("Failed to receive data")
@@ -165,7 +220,6 @@ class App extends Component {
   }
 
   changeRadioActors() {
-    console.log(this.searchSettings.showCast)
     if (this.searchSettings.showCast) {
       this.searchSettings.showCast = false;
     } else {
@@ -176,20 +230,16 @@ class App extends Component {
   }
 
   changeRadioGenres() {
-    console.log(this.searchSettings.showGenres)
     if (this.searchSettings.showGenres) {
       this.searchSettings.showGenres = false;
     } else {
       this.searchSettings.showGenres = true;
     }
 
-    console.log(this.searchSettings.showGenres)
-
     this.refillRows();
   }
 
   changeRadioDate() {
-    console.log(this.searchSettings.showDate)
     if (this.searchSettings.showDate) {
       this.searchSettings.showDate = false;
     } else {
@@ -200,7 +250,6 @@ class App extends Component {
   }
 
   changeRadioBudget() {
-    console.log(this.searchSettings.showBudget)
     if (this.searchSettings.showBudget) {
       this.searchSettings.showBudget = false;
     } else {
@@ -211,11 +260,30 @@ class App extends Component {
   }
 
   changeRadioBox() {
-    console.log(this.searchSettings.showBox)
     if (this.searchSettings.showBox) {
       this.searchSettings.showBox = false;
     } else {
       this.searchSettings.showBox = true;
+    }
+
+    this.refillRows();
+  }
+
+  changeRadioStatus() {
+    if (this.searchSettings.showStatus) {
+      this.searchSettings.showStatus = false;
+    } else {
+      this.searchSettings.showStatus = true;
+    }
+
+    this.refillRows();
+  }
+
+  changeRadioDuration() {
+    if (this.searchSettings.showDuration) {
+      this.searchSettings.showDuration = false;
+    } else {
+      this.searchSettings.showDuration = true;
     }
 
     this.refillRows();
@@ -238,11 +306,15 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <Header searchRenderer={this.searchRenderer} doTheSearch={this.doTheSearch} />
+          <Header changeShowSettings={this.changeShowSettings} searchRenderer={this.searchRenderer} doTheSearch={this.doTheSearch} handleKeyPress={this.handleKeyPress} />
           <Switch>
             <Route path='/search' component={() =>
               <div>
-                <SearchSettings updateMaxActors={this.updateMaxActors} searchSettings={this.searchSettings} changeRadioGenres={this.changeRadioGenres} changeRadioDate={this.changeRadioDate} changeRadioBudget={this.changeRadioBudget} changeRadioBox={this.changeRadioBox} changeRadioActors={this.changeRadioActors} />
+                {
+                  this.state.showSettings ?
+                    <SearchSettings handleCastKeyPress={this.handleCastKeyPress} maxActorsRenderer={this.maxActorsRenderer} maxActors={this.searchSettings.maxActors} changeRadioStatus={this.changeRadioStatus} changeRadioDuration={this.changeRadioDuration} changeShowSettings={this.changeShowSettings} boxesSettings={this.boxesSettings} setBoxesSettings={this.setBoxesSettings} updateMaxActors={this.updateMaxActors} searchSettings={this.searchSettings} changeRadioGenres={this.changeRadioGenres} changeRadioDate={this.changeRadioDate} changeRadioBudget={this.changeRadioBudget} changeRadioBox={this.changeRadioBox} changeRadioActors={this.changeRadioActors} />
+                    : null
+                }
 
                 <div className="searchData">
                   {this.state.rows}

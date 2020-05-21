@@ -3,7 +3,7 @@ import './CastRow.css';
 
 class CastRow extends React.Component {
     addDefaultSrc(ev) {
-        ev.target.src = 'notloadprofile.svg'
+        ev.target.src = 'notloadprofile3.svg'
       } 
     render() {
       var arr = this.props.cast
