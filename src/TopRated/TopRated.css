@@ -6,6 +6,14 @@
 
 .totalRow {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.mainContentRow {
+  display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
