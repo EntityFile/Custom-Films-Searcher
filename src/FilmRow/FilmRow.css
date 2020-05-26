@@ -269,16 +269,17 @@
   .oscarImg {
     width: 48px;
     margin-top: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 17px;
   }
 
   .additionalTitle {
     margin: 6px 7px;
-    height: 27px;
+    height: 25px;
     border-radius: 45px 45px 45px 45px
   }
 
   .additionalTitleP {
+    height: 25px;
     font-size: 14px;
     padding-bottom: 0px;
   }
@@ -354,6 +355,7 @@
 .academyResWin {
   font-family: 'Montserrat', sans-serif;
   color: #966C17;
+  font-weight: 700;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -362,6 +364,7 @@
 .academyResNominee {
   font-family: 'Montserrat', sans-serif;
   color: rgb(235, 201, 8);
+  font-weight: 700;
   justify-content: center;
   align-items: center;
   display: flex;

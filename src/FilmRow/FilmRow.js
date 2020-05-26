@@ -99,7 +99,11 @@ class FilmRow extends React.Component {
           </div>
         </div>
       case ("Production"):
-        return <div className={"additional" + box}>
+        return <div style={
+          window.innerWidth < 800 ?
+            {"padding-bottom": "2px"}
+          : {"padding-bottom": "5px"}
+          } className={"additional" + box}>
           <div className="additionalTitle">
             <p className="additionalTitleP">Production</p>
           </div>
@@ -217,7 +221,7 @@ class FilmRow extends React.Component {
   componentDidMount() {
     if (Object.values(this.props.boxesSettings).includes("Academy Awards")) {
       const proxyUrl = 'https://sym-cors-server.herokuapp.com/'
-      const urlApi = 'http://api.wolframalpha.com/v2/query?input=' + this.props.film.title + '%20' + this.props.film.releaseDate.slice(0, 4) + '%20academy%20award%20nominees&appid=J4Y65P-E5KWT68JLR&includepodid=Result&format=plaintext&output=json'
+      const urlApi = 'http://api.wolframalpha.com/v2/query?input=' + this.props.film.title + '%20film%20' + this.props.film.releaseDate.slice(0, 4) + '%20academy%20award%20nominees&appid=J4Y65P-E5KWT68JLR&includepodid=Result&format=plaintext&output=json'
       fetch(proxyUrl + urlApi)
         .then(res => res.json())
         .then(

@@ -11,14 +11,6 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      initial: 'state',
-      some: '',
-      searchString: '%20',
-      searchRoute: '/search',
-      showSettings: true
-    }
-
     this.searchSettings = {
       showCast: false,
       showGenres: true,
@@ -27,16 +19,44 @@ class App extends Component {
       showDate: true,
       showBudget: false,
       showBox: true,
-      maxActors: 14
+    }
+
+    if (window.innerWidth < 800) {
+      this.searchSettings.maxActors = 7
+
+      this.state = {
+        initial: 'state',
+        some: '',
+        searchString: '%20',
+        searchRoute: '/search',
+        showSettings: false
+      }
+
+      this.boxesSettings = {
+        Box1: "Hide the box",
+        Box2: "Hide the box",
+        Box3: "Academy Awards"
+      }
+      
+    } else {
+      this.searchSettings.maxActors = 14
+
+      this.state = {
+        initial: 'state',
+        some: '',
+        searchString: '%20',
+        searchRoute: '/search',
+        showSettings: true
+      }
+
+      this.boxesSettings = {
+        Box1: "Academy Awards",
+        Box2: "Director",
+        Box3: "Production"
+      }
     }
 
     this.currentMaxActors = 14
-
-    this.boxesSettings = {
-      Box1: "Academy Awards",
-      Box2: "Director",
-      Box3: "Production"
-    }
 
     this.searchString = '%20'
 

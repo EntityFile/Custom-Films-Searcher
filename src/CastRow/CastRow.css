@@ -47,6 +47,7 @@
   color: black;
   background-color: #EDF1F4;
   border-radius: 0px 0px 7px 7px;
+  z-index: 1;
 }
 
 p.castName {
@@ -102,4 +103,69 @@ p.castName {
     line-height: 6px;
     padding-bottom: 1px;
   }
+
+  .testP {
+    height: 25px;
+    width: 42px;
+    font-size: 6px;
+    line-height: 1.05;
+    padding: 0 2px;
+    margin-top: 65px;
+    border-radius: 0 0 3px 3px;
+    animation-name: appear2;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+  }
+}
+
+@media (min-width: 800px) {
+  .testP {
+    height: 45px;
+    width: 75px;
+    font-size: 11px;
+    line-height: 1.05;
+    padding: 0 2px;
+    margin-top: 118px;
+    border-radius: 0 0 7px 7px;
+    animation-name: appear;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+  }
+}
+
+.testP {
+  display: none;
+  font-family: 'Quicksand', sans-serif;
+  position: absolute;
+  background-color: rgb(112, 128, 144);
+  color: white;
+}
+
+
+@keyframes appear {
+  0% {margin-top: 80px}
+  100% {margin-top: 118px;}
+}
+
+@keyframes appear2 {
+  0% {margin-top: 45px}
+  100% {margin-top: 65px;}
+}
+
+@keyframes border {
+  from {border-radius: 0 0 7px 7px;}
+  to {border-radius: 0;}
+}
+
+.castBoxes:hover .testP {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.castBoxes:hover .castName {
+  animation-name: border;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  border-radius: 0;
 }
