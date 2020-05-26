@@ -19,11 +19,22 @@ class Header extends React.Component {
           </tbody>
         </table>
       </Link>
+      <div className="navButtons">
+        <div className="btnSpace"></div>
+        <Link className="navButton" to="/toprated"><button className="navBtn">Top rated</button></Link>
+        <div className="btnLine"></div>
+        <Link className="navButton" to="/popular"><button className="navBtn">Popular movies</button></Link>
+        <div className="btnLine"></div>
+        <Link className="navButton" to="/upcoming"><button className="navBtn">Upcoming movies</button></Link>
+        <div className="btnLine"></div>
+        <Link className="navButton" to="/about"><button className="navBtn">About</button></Link>
+      </div>
+
       <div className="outerSearchBar">
         <div className="searchTableBar">
           <input className="searchBar" onChange={this.props.searchRenderer} onKeyUp={this.props.handleKeyPress} placeholder="" />
           <Link className="link" to="/search"><button className="searchButton" onClick={this.props.doTheSearch} ><div className="w3-text-white"><i className="fa fa-search"></i></div></button></Link>
-          <Link className="link2" to="/search"><img onClick={this.props.changeShowSettings} className="settingsIcon" alt="show-settings  " src="settings-icon.png"/></Link>
+          <Link className="link2" ><img onClick={this.props.changeShowSettings} className="settingsIcon" alt="show-settings  " src="settings-icon.png" /></Link>
         </div>
       </div>
     </div>

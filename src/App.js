@@ -6,6 +6,8 @@ import $ from 'jquery';
 import Header from './Header/Header.js'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import SearchSettings from "./SearchSettings/SearchSettings.js";
+import TopRated from './TopRated/TopRated';
+import About from './About/About';
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +39,7 @@ class App extends Component {
         Box2: "Hide the box",
         Box3: "Academy Awards"
       }
-      
+
     } else {
       this.searchSettings.maxActors = 14
 
@@ -46,7 +48,7 @@ class App extends Component {
         some: '',
         searchString: '%20',
         searchRoute: '/search',
-        showSettings: true
+        showSettings: false
       }
 
       this.boxesSettings = {
@@ -82,12 +84,10 @@ class App extends Component {
   }
 
   changeShowSettings() {
-    let location = window.location.pathname
-    if (location !== '/search') {
-      this.setState({showSettings: true})
-    } else {
-      this.setState({showSettings: !this.state.showSettings})
-    }
+    // let location = window.location.pathname
+
+    this.setState({ showSettings: !this.state.showSettings })
+
   }
 
   setBoxesSettings(box, setting) {
@@ -128,7 +128,7 @@ class App extends Component {
 
         if (this.searchSettings.showCast === true || Object.values(this.boxesSettings).includes("Director") || Object.values(this.boxesSettings).includes("Writer") || Object.values(this.boxesSettings).includes("Composer")) {
           this.findCredits(film.id, film.title)
-          
+
         }
 
         const filmInfo = <FilmRow key={film.id} crew={this.crewRes} film={film} boxesSettings={this.boxesSettings} />
@@ -136,7 +136,7 @@ class App extends Component {
 
         if (this.searchSettings.showCast === true) {
           const castInfo = <CastRow key={this.castRes.cast_id} cast={this.castRes} maxActors={this.searchSettings.maxActors} />
-          
+
           filmrows.push(castInfo)
         }
 
@@ -217,7 +217,7 @@ class App extends Component {
       url: urlApi,
       success: (searchResults) => {
         console.log("Data received successfuly")
-       // const results = searchResults
+        // const results = searchResults
       },
       error: (xhr, status, err) => {
         console.log("Failed to receive data")
@@ -327,23 +327,43 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <Header changeShowSettings={this.changeShowSettings} searchRenderer={this.searchRenderer} doTheSearch={this.doTheSearch} handleKeyPress={this.handleKeyPress} />
+          {
+            this.state.showSettings ?
+              <SearchSettings handleCastKeyPress={this.handleCastKeyPress} maxActorsRenderer={this.maxActorsRenderer} maxActors={this.searchSettings.maxActors} changeRadioStatus={this.changeRadioStatus} changeRadioDuration={this.changeRadioDuration} changeShowSettings={this.changeShowSettings} boxesSettings={this.boxesSettings} setBoxesSettings={this.setBoxesSettings} updateMaxActors={this.updateMaxActors} searchSettings={this.searchSettings} changeRadioGenres={this.changeRadioGenres} changeRadioDate={this.changeRadioDate} changeRadioBudget={this.changeRadioBudget} changeRadioBox={this.changeRadioBox} changeRadioActors={this.changeRadioActors} />
+              : null
+          }
           <Switch>
             <Route path='/search' component={() =>
               <div>
-                {
-                  this.state.showSettings ?
-                    <SearchSettings handleCastKeyPress={this.handleCastKeyPress} maxActorsRenderer={this.maxActorsRenderer} maxActors={this.searchSettings.maxActors} changeRadioStatus={this.changeRadioStatus} changeRadioDuration={this.changeRadioDuration} changeShowSettings={this.changeShowSettings} boxesSettings={this.boxesSettings} setBoxesSettings={this.setBoxesSettings} updateMaxActors={this.updateMaxActors} searchSettings={this.searchSettings} changeRadioGenres={this.changeRadioGenres} changeRadioDate={this.changeRadioDate} changeRadioBudget={this.changeRadioBudget} changeRadioBox={this.changeRadioBox} changeRadioActors={this.changeRadioActors} />
-                    : null
-                }
-
                 <div className="searchData">
                   {this.state.rows}
                 </div>
               </div>}>
             </Route>
+            <Route path='/toprated' component={() =>
+              <div>
+                <TopRated searchSettings={this.searchSettings} boxesSettings={this.boxesSettings} type='topRated' page={1} />
+                <TopRated searchSettings={this.searchSettings} boxesSettings={this.boxesSettings} type='topRated' page={2} />
+                <TopRated searchSettings={this.searchSettings} boxesSettings={this.boxesSettings} type='topRated' page={3} />
+                <TopRated searchSettings={this.searchSettings} boxesSettings={this.boxesSettings} type='topRated' page={4} />
+                <TopRated searchSettings={this.searchSettings} boxesSettings={this.boxesSettings} type='topRated' page={5} />
+              </div>
+            }>
+            </Route>
+            <Route path='/popular' component={() =>
+              <TopRated searchSettings={this.searchSettings} boxesSettings={this.boxesSettings} type='popular' page={1} />
+            }>
+            </Route>
+            <Route path='/upcoming' component={() =>
+              <TopRated searchSettings={this.searchSettings} boxesSettings={this.boxesSettings} type='upcoming' page={1} />
+            }>
+            </Route>
+            <Route path='/about' component={() =>
+              <About />
+            }>
+            </Route>
             <Route path='/' component={() =>
               <p>Main page</p>}>
-
             </Route>
           </Switch>
         </BrowserRouter>

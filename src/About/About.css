@@ -1,0 +1,31 @@
+.aboutOuter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.aboutContent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  height: 100%;
+}
+
+.aboutTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  margin-top: 50px;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.aboutText {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  padding: 30px 25px;
+  background-color: #E8ECEF;
+  width: 800px;
+  border-radius: 12px;
+  text-align: justify;
+}

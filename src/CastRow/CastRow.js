@@ -8,7 +8,7 @@ class CastRow extends React.Component {
     render() {
       var arr = this.props.cast
       var renderedOutput = arr.map(item =><div className="castBoxes">
-        <img onError={this.addDefaultSrc} className="castPic" width="50" alt="cast-pic" src={'https://image.tmdb.org/t/p/w138_and_h175_face/' + item.profile_path} onerror="this.onerror=null;this.src='notloadprofile.svg';"/>
+        <img onError={this.addDefaultSrc} className="castPic" width="50" alt="cast-pic" src={'https://image.tmdb.org/t/p/w138_and_h175_face/' + item.profile_path} />
         <p className="castName">{item.name}</p>
         <p className="testP">{
           item.character.length < 35 ?

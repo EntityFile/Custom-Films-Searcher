@@ -128,7 +128,7 @@
 }
 
 .outerSearchBar {
-  width: 100%;
+  width: 30%;
   display: flex;
   justify-content: flex-end;
 }
@@ -187,4 +187,61 @@ input.searchBar {
 
 .link2:hover {
   background-color: rgb(189, 189, 189);
+}
+
+.navButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 1200px;
+}
+
+.btnSpace {
+  width: 80px;
+  height: 100%;
+}
+
+.navButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0 20px;
+  height: 50px;
+}
+
+.navBtn {
+  width: 100%;
+  color: white;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 19px;
+}
+
+.navBtn:focus {
+  outline-width: 0;
+}
+
+.btnLine {
+  background-color: white;
+  width: 1px;
+  height: 40px;
+}
+
+@media (max-width: 1400px) {
+  .navBtn {
+    font-size: 15px;
+  }
+
+  .navButton {
+    padding: 0 10px;
+  }
+
+  .btnSpace {
+    width: 0;
+  }
 }
