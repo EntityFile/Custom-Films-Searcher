@@ -8,6 +8,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import SearchSettings from "./SearchSettings/SearchSettings.js";
 import TopRated from './TopRated/TopRated';
 import About from './About/About';
+import TopRatedDemo from './TopRatedDemo/TopRatedDemo';
 
 class App extends Component {
   constructor(props) {
@@ -363,7 +364,12 @@ class App extends Component {
             }>
             </Route>
             <Route path='/' component={() =>
-              <p>Main page</p>}>
+              <div>
+                <TopRatedDemo type='topRated' page={1}/>
+                <TopRatedDemo type='popular' page={1}/>
+                <TopRatedDemo type='upcoming' page={1}/>
+              </div>
+              }>
             </Route>
           </Switch>
         </BrowserRouter>
