@@ -1,0 +1,253 @@
+.icon {
+  width: 60px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 800px) {
+  .icon {
+    width: 33px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  .titleBar {
+    font-size: 12px;
+    padding-left: 7px;
+  }
+  
+  .titleText {
+    width: 110px;
+    text-align: left;
+  }
+
+  .searchTableBar {
+    width: 160px;
+  }
+  
+  .searchBar {
+    height: 65%;
+    text-indent: 10px;
+    font-size: 12px;
+  }
+
+  .link {
+    height: 65%;
+    width: 31px;
+    margin-right: 15px;
+  }
+
+  .searchButton {
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  button.searchButton {
+    padding-bottom: 0px;
+  }
+
+  .link2 {
+    height: 28px;
+    width: 28px;
+    margin-right: 10px;
+  }
+
+  .settingsIcon {
+    width: 28px;
+  }
+}
+
+@media (min-width: 800px) {
+  .titleBar {
+    font-size: 24px;
+    padding-left: 7px;
+  }
+
+  .titleText {
+    width: 220px;
+  }
+
+  .searchTableBar {
+    width: 360px;
+  }
+
+  .searchBar {
+    height: 40%;
+    text-indent: 15px;
+    font-size: 18px;
+  }
+
+  .link {
+    height: 40%;
+    width: 55px;
+    margin-right: 10px;
+  }
+
+  .searchButton {
+    padding: 0 20px;
+    font-size: 17px;
+  }
+
+  button.searchButton {
+    padding-bottom: 2px;
+  }
+
+  .link2 {
+    margin-right: 25px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .settingsIcon {
+    width: 30px;
+  }
+}
+
+.titleBar {
+  background: linear-gradient(90deg, rgba(25,11,42,1) 0%, rgba(50,14,119,1) 100%);
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+}
+
+
+.searchBar {
+  font-family: 'Quicksand', sans-serif;
+  color: rgb(80, 80, 80);
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 45px 0px 0px 45px;
+}
+
+.searchTableBar{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.outerSearchBar {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.titleText {
+  margin: 0;
+}
+
+input.searchBar {
+  padding-bottom: 2px;
+}
+
+.searchBar:focus {
+  outline-width: 0;
+}
+
+.searchButton {
+  font-family: 'Quicksand', sans-serif;
+  display: block;
+  height: 100%;
+  float: right;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 0px 45px 45px 0px;
+}
+
+.searchButton:hover {
+  background-color: rgb(189, 189, 189);
+}
+
+.searchButton:focus {
+  outline-width: 0;
+}
+
+.link1 {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.link2 {
+
+  display: flex;
+  background-color: #ddd;
+  border-radius: 45px;
+}
+
+.link2:hover {
+  background-color: rgb(189, 189, 189);
+}
+
+.navButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 1200px;
+}
+
+.btnSpace {
+  width: 80px;
+  height: 100%;
+}
+
+.navButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0 20px;
+  height: 50px;
+}
+
+.navBtn {
+  width: 100%;
+  height: 100%;
+  color: white;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 19px;
+}
+
+.navBtn:focus {
+  outline-width: 0;
+}
+
+.btnLine {
+  background-color: white;
+  width: 1px;
+  height: 40px;
+}
+
+.navBtn:hover {
+  color: rgb(216, 216, 216);
+}
+
+
+@media (max-width: 1400px) {
+  .navBtn {
+    font-size: 15px;
+  }
+
+  .navButton {
+    padding: 0 10px;
+  }
+
+  .btnSpace {
+    width: 0;
+  }
+}

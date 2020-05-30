@@ -1,0 +1,171 @@
+.castBoxes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #D2D4D6;
+  margin-right: 10px;
+  height: 80%;
+  width: 75px;
+  margin-bottom: 10px;
+  border-radius: 7px;
+}
+
+.searchData {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.castSpace {
+  width: 15px;
+}
+
+.castBar {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  background-color: rgb(169, 189, 207);
+  margin-bottom: 20px;
+  width: 80%;
+  border-radius: 0px 0px 15px 15px;
+  padding: 0 10px 0 20px;
+}
+
+.castName {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 7px;
+  width: 75px;
+  margin: 0;
+  height: 44px;
+  text-align: center;
+  font-weight: 700;
+  font-family: 'Quicksand', sans-serif;
+  color: black;
+  background-color: #EDF1F4;
+  border-radius: 0px 0px 7px 7px;
+  z-index: 1;
+}
+
+p.castName {
+  line-height: 13px;
+  padding-bottom: 3px;
+}
+
+.searchButton:hover {
+  background: #ccc;
+}
+
+.castPic {
+  margin-top: 5px;
+  justify-self: center;
+  border: #fff;
+  border-radius: 5px;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 800px) {
+  .castBar {
+    width: 100%;
+    padding: 0 5px 0 10px;
+    justify-content: center;
+    border-radius: 0px 0px 7px 7px;
+    margin-bottom: 10px;
+  }
+
+  .castBoxes {
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 42px;
+    border-radius: 3px 3px 3px 3px;
+  }
+
+  .castPic {
+    width: 30px;
+    border-radius: 2.5px;
+    margin-top: 2.5px;
+    margin-bottom: 3px;
+  }
+
+  .castName {
+    width: 42px;
+    height: 23px;
+    font-size: 6.5px;
+    padding: 1px 3px;
+    border-radius: 0 0 3px 3px;
+  }
+
+  p.castName {
+    line-height: 6px;
+    padding-bottom: 1px;
+  }
+
+  .testP {
+    height: 25px;
+    width: 42px;
+    font-size: 6px;
+    line-height: 1.05;
+    padding: 0 2px;
+    margin-top: 65px;
+    border-radius: 0 0 3px 3px;
+    animation-name: appear2;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+  }
+}
+
+@media (min-width: 800px) {
+  .testP {
+    height: 45px;
+    width: 75px;
+    font-size: 11px;
+    line-height: 1.05;
+    padding: 0 2px;
+    margin-top: 118px;
+    border-radius: 0 0 7px 7px;
+    animation-name: appear;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+  }
+}
+
+.testP {
+  display: none;
+  font-family: 'Quicksand', sans-serif;
+  position: absolute;
+  background-color: rgb(112, 128, 144);
+  color: white;
+}
+
+
+@keyframes appear {
+  0% {margin-top: 80px}
+  100% {margin-top: 118px;}
+}
+
+@keyframes appear2 {
+  0% {margin-top: 45px}
+  100% {margin-top: 65px;}
+}
+
+@keyframes border {
+  from {border-radius: 0 0 7px 7px;}
+  to {border-radius: 0;}
+}
+
+.castBoxes:hover .testP {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.castBoxes:hover .castName {
+  animation-name: border;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  border-radius: 0;
+}

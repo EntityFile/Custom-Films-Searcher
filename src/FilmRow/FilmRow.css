@@ -1,0 +1,421 @@
+.mainInfo {
+  width: 100%;
+}
+
+.additionalInfo {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.additionalBoxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  margin-right: 14px;
+}
+
+.additionalBox1 {
+  background-color: #CACCCE;
+  width: 160px;
+  height: 240px;
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.academyNom1 {
+  height: 50%;
+  display: flex;
+  background-color: #C69320;
+}
+
+.academyNom2 {
+  height: 50%;
+  display: flex;
+  background-color: #C69320;
+}
+
+.academyNom3 {
+  height: 50%;
+  display: flex;
+  background-color: #C69320;
+}
+
+@media (max-width: 1500px) {
+  .additionalBox1 {
+    display: none;
+  }
+}
+
+.additionalBox2 {
+  background-color: #D2D4D6;
+  width: 160px;
+  height: 240px;
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1230px) {
+  .additionalBox2 {
+    display: none;
+  }
+
+  .additionalInfo {
+    width: 60%;
+  }
+}
+
+.additionalBox3 {
+  background-color: #CACCCE;
+  width: 160px;
+  height: 240px;
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1230px) {
+  .additionalInfo {
+    width: 80%;
+  }
+}
+
+.searchRow1 {
+  background-color: #E8ECEF;
+  display: flex;
+  width: 80%;
+}
+
+.searchRow2 {
+  background-color: rgb(220, 227, 233);
+  display: flex;
+  width: 80%;
+}
+
+.posterImg {
+  margin: 15px 20px;
+  border-radius: 8px;
+  height: 240px;  
+}
+
+.filmTitle {
+  font-size: 30px;
+  font-family: 'Quicksand', sans-serif;
+  text-align: left;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+
+.filmInfo {
+  font-size: 15px;
+  font-family: 'Quicksand', sans-serif;
+  margin: 3px 0;
+  text-align: left;
+}
+
+@media (max-width: 800px) {
+  .load {
+    width: 75%;
+  }
+  
+  .filmInfo {
+    font-size: 8px;
+    line-height: 1.2;
+  }
+
+  .oscarImg {
+    width: 24px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+
+  .filmTitle {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 7px
+  }
+
+  .academyWins {
+    font-size: 10px;
+  }
+
+  .academyResults {
+    margin: 0;
+    margin-left: 6px;
+    font-size: 8px;
+  }
+
+  .academyResWin {
+    margin: 0;
+    font-size: 18px;
+    width: 30px;
+    margin-left: 30px;
+    height: 25px;
+  }
+
+  .academyResNominee {
+    font-size: 13px;
+    margin: 0;
+    margin-left: 4px;
+    width: 20px;
+    height: 25px;
+  }
+
+  .additionalBoxes {
+    margin-right: 7px;
+  }
+
+  .additionalBox3 {
+    width: 80px;
+    height: 120px;
+    margin: 7px 0;
+  }
+
+  .additionalTitleP {
+    height: 13.5px;
+    font-size: 8.5px;
+    padding-bottom: 0px;
+  }
+
+  .additionalTitle {
+    height: 13.5px;
+    margin: 3px 3.5px;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .posterImg {
+    height: 120px;
+    margin: 7px 9px;
+  }
+
+  .searchRow1 {
+    width: 100%;
+  }
+
+  .searchRow2 {
+    width: 100%;
+  }
+
+  .crewImgDiv {
+    height: 65px;
+  }
+
+  .crewImg {
+    width: 45px;
+    border-radius: 6px;
+  }
+
+  .crewTitle {
+    height: 33px;
+    padding: 0 5px;
+    font-size: 11px;
+  }
+
+  .prodTitle1 {
+    font-size: 7.5px;
+    width: 75px;
+    height: 18px;
+    padding: 0 2px;
+    line-height: 1.0;
+  }
+
+  .prodTitle2 {
+    font-size: 7.5px;
+    width: 75px;
+    height: 18px;
+    padding: 0 2px;
+    line-height: 1.0;
+  }
+}
+
+@media (max-width: 1050px) and (min-width: 801px) {
+  .filmTitle {
+    font-size: 19px;
+  }
+
+  .filmInfo {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 800px) {
+  .filmInfo {
+    line-height: 1.35;
+  }
+
+  .academyResults {
+    margin-left: 12px;
+  }
+
+  .academyResWin {
+    margin: 0;
+    font-size: 40px;
+    width: 60px;
+    margin-left: 55px;
+    height: 50px;
+  }
+
+  .academyResNominee {
+    font-size: 27px;
+    margin: 0;
+    margin-left: 9.5px;
+    width: 40px;
+    height: 50px;
+  }
+
+  .oscarImg {
+    width: 48px;
+    margin-top: 5px;
+    margin-bottom: 17px;
+  }
+
+  .additionalTitle {
+    margin: 6px 7px;
+    height: 25px;
+    border-radius: 45px 45px 45px 45px
+  }
+
+  .additionalTitleP {
+    height: 25px;
+    font-size: 14px;
+    padding-bottom: 0px;
+  }
+
+  .crewImgDiv {
+    height: 130px;
+  }
+
+  .crewImg {
+    width: 95px;
+    border-radius: 12px;
+  }
+
+  .crewTitle {
+    font-size: 17px;
+    height: 73px;
+    padding: 0 10px;
+  }
+
+  .prodTitle1 {
+    font-size: 14px;
+    width: 147px;
+    height: 35px;
+    padding: 0 5px;
+    line-height: 1.12;
+  }
+
+  .prodTitle2 {
+    font-size: 14px;
+    width: 147px;
+    height: 35px;
+    padding: 0 5px;
+    line-height: 1.12;
+  }
+  
+}  
+
+.additionalTitle {
+  background-color: white;
+  display: flex;
+  align-content: center;
+  justify-content: center;;
+}
+
+.additionalTitleP {
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  vertical-align: middle;
+  color: rgb(119, 119, 119);
+}
+
+.additionalContent {
+  height: 89%;
+  display: flex;
+  flex-direction: column;
+}
+
+.academyResults {
+  font-family: 'Quicksand', sans-serif;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.academyWins {
+  height: 50%;
+  background-color: #DBB721;
+  display: flex;
+}
+
+.academyResWin {
+  font-family: 'Montserrat', sans-serif;
+  color: #966C17;
+  font-weight: 700;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.academyResNominee {
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(235, 201, 8);
+  font-weight: 700;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.crewImgDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.crewImg {
+  filter: opacity(95%);
+}
+
+.crewTitle {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  line-height: 1.12
+}
+
+.prodDiv {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prodTitle1 {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #8f8f8f;
+  border-radius: 45px;
+  color: white;
+}
+
+.prodTitle2 {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a3a3a3;
+  border-radius: 45px;
+  color: white;
+}
