@@ -15,7 +15,7 @@ class TopRatedDemo extends React.Component {
   }
 
   addDefaultSrc(ev) {
-    ev.target.src = 'notloadposter3.svg'
+    ev.target.src = 'notloadposter3.png'
   }
 
   componentDidMount() {
